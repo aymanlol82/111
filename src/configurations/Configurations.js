@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 dotenv.config()
 //const {PORT , DEV_DATABASE_URL , PROD_DATABASE_URL , ENVIRONMENT} = process.env
 
-const PORT = process.env || 3030
+const PORT = process.env.PORT || 3030
 
 const connectToPort = async (app) => {
     try{

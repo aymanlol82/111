@@ -2,7 +2,9 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
 dotenv.config()
-const {PORT , DEV_DATABASE_URL , PROD_DATABASE_URL , ENVIRONMENT} = process.env
+//const {PORT , DEV_DATABASE_URL , PROD_DATABASE_URL , ENVIRONMENT} = process.env
+
+const PORT = process.env || 3030
 
 const connectToPort = async (app) => {
     try{
@@ -15,7 +17,8 @@ const connectToPort = async (app) => {
 }
 
 const connectToDatabas = async (app) => {
-    const DATABASE_URL = (ENVIRONMENT === 'DEVELOPMENT') ? DEV_DATABASE_URL : PROD_DATABASE_URL
+    //const DATABASE_URL = (ENVIRONMENT === 'DEVELOPMENT') ? DEV_DATABASE_URL : PROD_DATABASE_URL
+      const DATABASE_URL = process.env.MONOGDB_URL || 'mongodb://localhost/backendproject'
     try{
         await mongoose.connect(DATABASE_URL, {useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex: true})
         console.log('   ✔️     Successfuly connected to the databas.. ')

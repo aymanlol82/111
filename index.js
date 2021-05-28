@@ -13,9 +13,9 @@ const __dirname = path.resolve()
 
 app.use(express.static(path.join(__dirname ,'bakverkproject/build')))
 
-app.get('/*', (req, res) => {
+/*app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname ,'bakverkproject/build/index.html'))
-})
+})*/
 
 app.use(express.json())
 app.use(cors({Credential: true}))

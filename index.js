@@ -11,7 +11,6 @@ import path from 'path'
 
 const app = express()
 const __dirname = path.resolve()
-const port = process.env.PORT || 8080
 
 app.use(express.json())
 app.use(cors({Credential: true}))
@@ -21,9 +20,9 @@ app.use(morgan('common',))
 
 
 
-app.get('/product' , (requset,response) => {
+/*app.get('/product' , (requset,response) => {
     response.send(`  ✔️     SERVERN IS RUNNING `)
-} )
+} )*/
 
 routes.pastryRoute(app)
 routes.userRoute(app)
@@ -31,18 +30,14 @@ routes.userRoute(app)
 app.use(Middlewares.notFound)
 
 
-app.use(express.static(path.join(__dirname)))
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'bakverkproject/public', 'index.html'));
-  })
+app.use(express.static(path.join(__dirname, '../bakverkproject/build')))
 
-app.set("port", port)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../bakverkproject/build/index.html'))
+})
 
-app.use('/', routes.pastryRoute)
-
-app.listen(port, () => console.log(`Server running on localhost:${port}`))
-//Configurations.connectToPort(app)
+Configurations.connectToPort(app)
 Configurations.connectToDatabas()
 
 

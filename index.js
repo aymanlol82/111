@@ -10,7 +10,7 @@ import path from 'path'
 
 
 const app = express()
-
+const __dirname = path.resolve()
 app.use(express.json())
 app.use(cors({Credential: true}))
 app.use(helmet())
@@ -29,16 +29,18 @@ routes.userRoute(app)
 app.use(Middlewares.notFound)
 
 
-//app.use(express.static(path.join( "bakverkproject/build")))
+app.use(express.static(path.join( "bakverkproject/build")))
+app.use("/pastry", express.static(__dirname + '/pastry'))
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'bakverkproject/build', 'index.html'));
   })
 
-Configurations.connectToPort(app)
+app.listen(process.env.PORT || 5000)
+
+//Configurations.connectToPort(app)
 Configurations.connectToDatabas()
 
-app.listen(9000)
 
 
 

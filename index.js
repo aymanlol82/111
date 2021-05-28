@@ -10,14 +10,13 @@ import path from 'path'
 
 
 const app = express()
-const __dirname = path.resolve();
 
 app.use(express.json())
 app.use(cors({Credential: true}))
 app.use(helmet())
 app.use(morgan('common',))
 
-app.use(express.static(path.join(__dirname,"bakverkproject/build")))
+
 
 
 app.get('/product' , (requset,response) => {
@@ -29,12 +28,11 @@ routes.userRoute(app)
 
 app.use(Middlewares.notFound)
 
+
+app.use(express.static(path.join("bakverkproject/build")))
+
 Configurations.connectToPort(app)
 Configurations.connectToDatabas()
-
-export default app
-
-
 
 
 

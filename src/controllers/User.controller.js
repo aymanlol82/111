@@ -5,8 +5,8 @@ import StatusCode from '../configurations/StatusCode.js'
 
 const createUser= async (request, response) => {
 
-    const BCRYPT_SALT_ROUND = 10 
-    const hashPassword = await bcrypt.hash(request.body.password,BCRYPT_SALT_ROUND)
+    /*const BCRYPT_SALT_ROUND = 10 
+    const hashPassword = await bcrypt.hash(request.body.password,BCRYPT_SALT_ROUND)*/
 
     const user = new UserModel( {
         username: request.body.username,

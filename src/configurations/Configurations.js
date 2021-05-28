@@ -1,10 +1,22 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
-dotenv.config()
+//dotenv.config()
 //const {PORT , DEV_DATABASE_URL , PROD_DATABASE_URL , ENVIRONMENT} = process.env
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3030
+
+const connectToDatabas = async (app) => {
+    //const DATABASE_URL = (ENVIRONMENT === 'DEVELOPMENT') ? DEV_DATABASE_URL : PROD_DATABASE_URL
+      const DATABASE_URL = process.env.MONOGDB_URL || 'mongodb://localhost:27017/backendproject'
+    try{
+        await mongoose.connect(DATABASE_URL, {useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex: true})
+        console.log('   ✔️     Successfuly connected to the databas.. ')
+    } catch (error) {
+        console.log('   ❌     Error while trying to connect to the databas: ' + error)
+        process.exit()
+    }
+} 
 
 const connectToPort = async (app) => {
     try{
@@ -15,18 +27,6 @@ const connectToPort = async (app) => {
             console.log (`  ❌     Error , Server is not running on port : ${PORT}`)
     }
 }
-
-const connectToDatabas = async (app) => {
-    //const DATABASE_URL = (ENVIRONMENT === 'DEVELOPMENT') ? DEV_DATABASE_URL : PROD_DATABASE_URL
-      const DATABASE_URL = process.env.MONOGDB_URL || 'mongodb://localhost:/backendproject'
-    try{
-        await mongoose.connect(DATABASE_URL, {useNewUrlParser: true , useUnifiedTopology: true , useCreateIndex: true})
-        console.log('   ✔️     Successfuly connected to the databas.. ')
-    } catch (error) {
-        console.log('   ❌     Error while trying to connect to the databas: ' + error)
-        process.exit()
-    }
-} 
 
 
 export default {

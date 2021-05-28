@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "install-frontend": "cd bakverkproject && npm install",
     "build-frontend": "cd bakverkproject && npm run build",
     "heroku-postbuild": "npm run install-frontend && npm run build-frontend"

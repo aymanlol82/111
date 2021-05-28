@@ -25,8 +25,6 @@ app.use(cors({Credential: true}))
 app.use(helmet())
 app.use(morgan('common',))
 
-
-
 app.get('/' , (requset,response) => {
     console.log("RESRSR")
     res.send('HELO FROM AYMAN')
@@ -36,6 +34,8 @@ app.get('/' , (requset,response) => {
 //routes.userRoute(app)
 
 app.use(Middlewares.notFound)
+
+
 
 
 

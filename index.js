@@ -11,11 +11,17 @@ import path from 'path'
 const app = express()
 const __dirname = path.resolve()
 
-app.use(express.static(path.join(__dirname ,'bakverkproject/build')))
+//app.use(express.static(path.join(__dirname ,'bakverkproject/build')))
+app.use(express.static(path.resolve('client', 'bakverkproject/build')));
 
 /*app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname ,'bakverkproject/build/index.html'))
 })*/
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve('client', 'bakverkproject/build', 'index.html'));
+});
+
 
 app.use(express.json())
 app.use(cors({Credential: true}))

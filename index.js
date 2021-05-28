@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname ,'bakverkproject/build')))
     res.sendFile(path.join(__dirname ,'bakverkproject/ build', 'index.html'))
 })*/
 
-app.get('/' , (requset,response) => {
+app.get('/*' , (requset,response) => {
     console.log('RESRSR')
     res.send('HELO FROM AYMAN')
 } )

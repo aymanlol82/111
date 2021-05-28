@@ -8,9 +8,17 @@ import cors from 'cors'
 import path from 'path'
 
 
-
 const app = express()
 const __dirname = path.resolve()
+
+app.use(express.static(path.join(__dirname ,'bakverkproject/build')))
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname ,'bakverkproject/ build', 'index.html'))
+})
+
+
+const PORT = process.env.PORT || 5000
 
 app.use(express.json())
 app.use(cors({Credential: true}))
@@ -19,26 +27,32 @@ app.use(morgan('common',))
 
 
 
+app.get('/' , (requset,response) => {
+    console.log("RESRSR")
+    res.send('HELO FROM AYMAN')
+} )
 
-/*app.get('/product' , (requset,response) => {
-    response.send(`  ✔️     SERVERN IS RUNNING `)
-} )*/
-
-routes.pastryRoute(app)
-routes.userRoute(app)
+//routes.pastryRoute(app)
+//routes.userRoute(app)
 
 app.use(Middlewares.notFound)
 
 
 
-app.use(express.static(path.join(__dirname, '../bakverkproject/build')))
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/../bakverkproject/build/index.html'))
+
+
+
+
+
+app.listen(PORT ,() => {
+    console.log (`  ✔️     Server is running on port : ${PORT}`)
 })
 
-Configurations.connectToPort(app)
-Configurations.connectToDatabas()
+
+
+//Configurations.connectToPort(app)
+//Configurations.connectToDatabas()
 
 
 

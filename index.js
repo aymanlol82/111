@@ -29,7 +29,7 @@ routes.userRoute(app)
 app.use(Middlewares.notFound)
 
 
-app.use(express.static(path.join(__dirname, "bakverkproject/build")))
+app.use(express.static(path.join(__dirname, "bakverkproject/public")))
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'bakverkproject/build', 'index.html'));

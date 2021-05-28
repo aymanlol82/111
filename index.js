@@ -11,6 +11,8 @@ import path from 'path'
 
 const app = express()
 const __dirname = path.resolve()
+const port = process.env.PORT || 8080
+
 app.use(express.json())
 app.use(cors({Credential: true}))
 app.use(helmet())
@@ -34,7 +36,12 @@ app.use(express.static(path.join(__dirname)))
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'bakverkproject/public', 'index.html'));
   })
-app.listen(process.env.PORT || 8080)
+
+app.set("port", port)
+
+app.use('/', routes.pastryRoute)
+
+app.listen(port, () => console.log(`Server running on localhost:${port}`))
 //Configurations.connectToPort(app)
 Configurations.connectToDatabas()
 

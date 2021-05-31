@@ -19,8 +19,6 @@ const pastrySchema = new Schema({
     ingredient: String,
     imageURL:String
 
-
-
 },{ timestamps: true, versionKey: false, autoIndex: true })
 
 

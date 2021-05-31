@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha 'tests/**'",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "install-frontend": "cd bakverkproject && npm install",
@@ -17,7 +17,10 @@
   "author": "Ayman Abdulhak",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "gh-pages": "^3.2.0",
+    "mocha": "^8.4.0",
     "nodemon": "^2.0.7"
   },
   "dependencies": {

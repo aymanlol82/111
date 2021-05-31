@@ -12,6 +12,8 @@ const userRoute = app => {
     app.post('/user' , UserController.createUser)
     app.get('/user', UserController.fetchAllUsers)
     app.get('/user/:userId', UserController.getUserByID)
+    app.delete('/user/:userId', UserController.deleteUserByID)
+    app.put('/user/:userId', UserController.updateUser)
 
 }
 

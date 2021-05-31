@@ -11,8 +11,11 @@ import path from 'path'
 const app = express()
 const __dirname = path.resolve()
 
-//app.use(express.static(path.join(__dirname ,'bakverkproject/build')))
-app.use(express.static(path.resolve('client', 'bakverkproject/build')));
+if (process.env.NODE_ENV ==='production') {
+    app.use(express.static('bakverkproject/build'))
+}
+
+
 
 /*app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname ,'bakverkproject/build/index.html'))
@@ -37,7 +40,7 @@ app.use(Middlewares.notFound)
 Configurations.connectToPort(app)
 Configurations.connectToDatabas()
 
-
+export default app
 
 
 
